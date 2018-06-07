@@ -25,4 +25,14 @@ services:
       - "80:80"
     depends_on:
       - app
+      - jenkins
     container_name: "nginx"
+  jenkins:
+    image: jenkins
+    environment:
+      - JENKINS_OPTS=--prefix=/jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+    container_name: "jenkins"
